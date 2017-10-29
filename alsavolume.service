@@ -1,0 +1,10 @@
+[Unit]
+Description="Set volume level."
+After=sound.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/amixer sset PCM -- 97%
+
+[Install]
+WantedBy=multi-user.target

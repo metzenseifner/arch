@@ -1,0 +1,17 @@
+[Unit]
+Description = Start instance of desktop environment on tty1/vt1
+After=systemd-user-sessions.service network.target sound.target
+Conflicts=getty@tty1.service
+
+[Service]
+User = jonathan
+Group = admin
+PAMName = login
+Type = simple
+TTYPath = /dev/tty1
+ExecStart = /usr/bin/xinit /usr/bin/xfce4-session -- :0 -nolisten tcp vt1
+Restart = on-success
+StandardInput = tty
+
+[Install]
+WantedBy = multi-user.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Make my IP known. Send results of $(ip a) to another machine over ssh as a text file prefixed with "beacon-".
+After=network.target
+
+[Service]
+ExecStart=/bin/sh /usr/local/sbin/beacon.sh
+
+[Install]
+WantedBy=multi-user.target

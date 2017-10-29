@@ -1,0 +1,12 @@
+# make sym link from /etc/systemd/system/xvnc.socket
+# to /etc/systemd/system/socket.target.wants to enable
+
+[Unit]
+Description=XVNC Server
+
+[Socket]
+ListenStream=5900
+Accept=yes
+
+[Install]
+WantedBy=sockets.target
