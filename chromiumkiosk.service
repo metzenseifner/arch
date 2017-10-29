@@ -1,0 +1,28 @@
+[Unit]
+Description = Start instance of desktop environment on tty1/vt1
+After=systemd-user-sessions.service network.target sound.target
+Conflicts=getty@tty1.service
+
+[Service]
+User = jonathan
+Group = admin
+PAMName = login
+Type = simple
+TTYPath = /dev/tty1
+ExecStart = /usr/bin/xinit /usr/bin/chromium \
+             --start-maximized \
+             --force-device-scale-factor=1.5 \
+             --window-size=1920,1080 \
+             --window-position=0,0 \
+             --kiosk \
+             --noerrdialogs \
+             --hide-scrollbars \
+             --incognito \
+             https://www.meteoblue.com/en/weather/forecast/week/pettneu_austria_2769004 \
+             # x stuff like resolution, display monitor virtual terminal \
+             -- :0 -dpms -nolisten tcp vt1
+Restart = on-success
+StandardInput = tty
+
+[Install]
+WantedBy = multi-user.target
