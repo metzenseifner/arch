@@ -9,14 +9,27 @@ dtoverlay=pi3-disable-bt
 # Temp fix for baud rate when using UART pins RX TX (and prob breaks kodi)
 #core_freq=250
 
+# MISCELLANEOUS
+# avoid_warnings=1 # removes the undervoltage warning overlay.
+# avoid_warnings=2 # additionally allows turbo when low-voltage is present.
+
+# CPU
+force_turbo=0 # enables dynamic clocks and voltage for the ARM core, GPU core and SDRAM.
+force_turbo=1 # disables dynamic clocking, so all frequencies and voltages stay high. Overclocking of H.264/V3D/ISP GPU parts is allowed as well as setting "over_voltage" to 8 (1.4 V)
+
+# USB
+max_usb_current=1 # 1200mA
+max_usb_current=0 # 600mA
+
 # AUDIO SETUP
 dtparam=audio=on
 audio_pwm_mode=2
 disable_audio_dither=1 # remove analog audible background hiss at low volume (did not work for me) usiong PWM algorithm
 #hdmi_drive=1 # 1: DVI (no sound) 2: HDMI (sound if supported and enabled)
+#hdmi_drive=2 # Normal HDMI mode (Sound will be sent if supported and enabled)
 #amixer cset numid=3 1 # Did not work for me 0=auto 1=analog 2=HDMI (careful, number directly after = should be 2)
-hdmi_ignore_edid_audio=1
-hdmi_force_edid_audio=0
+hdmi_ignore_edid_audio=0 # 1 Pretends all audio formats are unsupported by display. This means ALSA will default to analogue.
+hdmi_force_edid_audio=0 # 1 Pretends all audio formats are supported by display, allowing passthrough of DTS/AC3 even when not reported as supported.
 
 # VIDEO SETUP
 # when set to 1, will read the edid data from the edid.dat file instead of from the monitor
@@ -30,8 +43,8 @@ hdmi_force_hotplug=1
 #overscan_top=10
 #overscan_bottom=10
 
-hdmi_group=1# defines the HDMI type CEA format
-#hdmi_group=1# defines the HDMI type DMT format
+hdmi_group=1# defines the HDMI type CEA format for TVs
+#hdmi_group=1# defines the HDMI type DMT format computer monitors
 
 # These values are valid if hdmi_group=1 (CEA)
 # hdmi_mode=1    VGA
