@@ -1,24 +1,32 @@
 # XFCE 4
-sudo pacman -S xfce4 xfce4-goodies xarchiver pavucontrol
-sudo pacman -S sddm
+sudo pacman -S --noconfirm xfce4 xfce4-goodies xarchiver pavucontrol
+sudo pacman -S --noconfirm sddm
 sudo sh -c "sddm --example-config > /etc/sddm.conf"
 
 # SDDM Theme
-yaourt -S archlinux-themes-sddm
+yaourt -S --noconfirm archlinux-themes-sddm
 sudo systemctl enable --now sddm
 
 # Autologin
 # not finished
 
 # Icons
-yaourt -S paper-icon-theme-git
+yaourt -S --noconfirm paper-icon-theme-git
 
 # Theme
-yaourt -S arc-gtk-theme
+yaourt -S --noconfirm arc-gtk-theme
 
 # Font
-yaourt -S ttf-roboto
+yaourt -S --noconfirm ttf-roboto
 
 # Terminal Font
-yaourt -S ttf-roboto-mono
+yaourt -S --noconfirm ttf-roboto-mono
 
+# Audio
+yaourt -S --noconfirm pavucontrol pulseaudio-alsa
+
+# ffmpeg Hardware Accelerated Video for Raspberry Pi
+yaourt -S --noconfirm ffmpeg-mmal
+ 
+# Web Browser
+yaourt -S --noconfirm chromium 
